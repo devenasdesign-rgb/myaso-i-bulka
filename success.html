@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Заказ принят — МЯСО & БУЛКА</title>
+<meta name="description" content="Ваш заказ в МЯСО & БУЛКА принят и передан на кухню.">
+<meta name="theme-color" content="#0d0b0a">
+<link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Unbounded:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/order.css">
+</head>
+<body>
+
+<header class="header is-stuck">
+  <div class="header__inner">
+    <a href="index.html" class="logo">МЯСО <span>&amp; БУЛКА</span></a>
+    <nav class="nav">
+      <a href="index.html#menu">Меню</a>
+      <a href="index.html#kitchen">Кухня</a>
+      <a href="index.html#contacts">Контакты</a>
+    </nav>
+    <div class="header__actions">
+      <a class="header__phone" href="tel:+79991874770">+7 (999) 187-47-70</a>
+    </div>
+  </div>
+</header>
+
+<main class="order-page">
+  <div class="shell">
+
+    <div class="order-empty" id="empty-state" hidden>
+      <div class="order-empty__title">Пока ничего нет</div>
+      <p class="order-empty__text">Не нашли недавний заказ. Загляните в меню — там 17 поводов вернуться.</p>
+      <a class="btn btn--primary" href="index.html#menu">Перейти в меню</a>
+    </div>
+
+    <div class="success" id="success-root" hidden>
+      <div class="order-steps" style="justify-content:center">
+        <span class="order-step is-done"><b>1</b> Оформление</span>
+        <span class="order-steps__sep">—</span>
+        <span class="order-step is-done"><b>2</b> Оплата</span>
+        <span class="order-steps__sep">—</span>
+        <span class="order-step is-active"><b>3</b> Готово</span>
+      </div>
+
+      <div class="success__icon" style="margin-top:36px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5.2 5.2L20 7"/></svg>
+      </div>
+
+      <h1 class="order-title" id="success-title">Заказ принят</h1>
+      <p class="order-sub" style="margin-inline:auto" id="success-sub"></p>
+      <div class="success__number" id="success-number"></div>
+
+      <div class="success__facts" id="success-facts"></div>
+
+      <section class="panel" style="margin-top:16px;text-align:left">
+        <h2 class="panel__title">Детали заказа</h2>
+        <div class="summary__lines" data-summary-lines></div>
+        <div class="summary__total"><span>Итого</span><b data-summary-total>0 ₽</b></div>
+      </section>
+
+      <div class="success__actions">
+        <a class="btn btn--primary" href="index.html#menu">Заказать ещё</a>
+        <a class="btn btn--ghost" href="tel:+79991874770">Позвонить в кафе</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script src="js/cart.js"></script>
+<script src="js/success.js"></script>
+</body>
+</html>

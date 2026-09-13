@@ -37,14 +37,6 @@ const MENU = [
         price: 450,
         img: "assets/menu/crispy-chicken.jpg",
         comp: ["Куриное филе в хрустящей панировке", "Коул-слоу", "Салат", "Огурцы", "Сливочный соус с паприкой", "Булочка"]
-      },
-      {
-        id: "veggie-crunch",
-        name: "Veggie Crunch",
-        price: 430,
-        img: "assets/menu/veggie-crunch.jpg",
-        mark: "Veg",
-        comp: ["Котлета из нута и овощей", "Коул-слоу", "Свежий салат", "Огурцы", "Пикантный соус", "Булочка"]
       }
     ]
   },

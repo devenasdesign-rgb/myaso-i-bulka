@@ -810,14 +810,13 @@ body.drawer-open .drawer { transform: translateX(0); }
   .promo__media {
     position: static;
     inset: auto;
-    display: flex;
-    justify-content: center;
-    margin: 0 0 8px;
+    display: block;
+    margin: calc(-1 * var(--promo-pad)) 0 16px calc(-1 * var(--promo-pad));
     overflow: visible;
   }
   .promo__media img {
     position: static;
-    width: min(70vw, 300px);
+    width: min(88vw, 460px);
     height: auto;
     max-height: none;
   }

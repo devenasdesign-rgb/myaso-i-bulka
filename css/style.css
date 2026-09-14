@@ -373,6 +373,8 @@ body.nav-open { overflow: hidden; }
 
 /* ---------- Marquee ---------- */
 .marquee {
+  position: relative;
+  margin-top: -50px;
   border-block: 1px solid var(--line-soft);
   background: var(--bg-soft);
   overflow: hidden;
@@ -408,6 +410,7 @@ body.nav-open { overflow: hidden; }
 /* =========================================================
    Promo banner
    ========================================================= */
+#combo { margin-top: 50px; }
 .promo__card {
   --promo-pad: clamp(28px, 4.5vw, 64px);
   --promo-img-w: clamp(300px, 49.7vw, 716px);

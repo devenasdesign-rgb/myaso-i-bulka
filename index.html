@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>МЯСО & БУЛКА — smash-бургерная в Екатеринбурге</title>
+<title data-i18n="meta.indexTitle">МЯСО & БУЛКА — smash-бургерная в Екатеринбурге</title>
 <meta name="description" content="МЯСО & БУЛКА — городская smash-бургерная в Екатеринбурге. Честные бургеры на открытом гриле, холодные лимонады и большой стол для своих. Заказ и оплата онлайн.">
 <meta name="theme-color" content="#0d0b0a">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
@@ -20,21 +20,22 @@
     <a href="#top" class="logo">МЯСО <span>&amp; БУЛКА</span></a>
 
     <nav class="nav">
-      <a href="#menu">Меню</a>
-      <a href="#kitchen">Кухня</a>
-      <a href="#about">О нас</a>
-      <a href="#news">Новости</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#menu" data-i18n="nav.menu">Меню</a>
+      <a href="#kitchen" data-i18n="nav.kitchen">Кухня</a>
+      <a href="#about" data-i18n="nav.about">О нас</a>
+      <a href="#news" data-i18n="nav.news">Новости</a>
+      <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
     </nav>
 
     <div class="header__actions">
       <a class="header__phone" href="tel:+79991874770">+7 (999) 187-47-70</a>
-      <button class="cart-btn" data-cart-open type="button" aria-label="Открыть корзину">
+      <button class="lang-switch" data-lang-switch type="button">RU</button>
+      <button class="cart-btn" data-cart-open type="button" data-i18n-attr="aria-label:header.cartAria">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.4a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.7L5.5 4H3"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        <span>Корзина</span>
+        <span data-i18n="header.cart">Корзина</span>
         <span class="cart-btn__count" data-cart-count data-empty="true"></span>
       </button>
-      <button class="burger" id="burger" type="button" aria-label="Меню навигации" aria-expanded="false">
+      <button class="burger" id="burger" type="button" data-i18n-attr="aria-label:header.menuAria" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -42,12 +43,13 @@
 </header>
 
 <nav class="mobile-nav" id="mobile-nav">
-  <a href="#menu">Меню</a>
-  <a href="#kitchen">Кухня</a>
-  <a href="#about">О нас</a>
-  <a href="#news">Новости</a>
-  <a href="#contacts">Контакты</a>
-  <a class="btn btn--primary" href="tel:+79991874770">Позвонить +7 (999) 187-47-70</a>
+  <a href="#menu" data-i18n="nav.menu">Меню</a>
+  <a href="#kitchen" data-i18n="nav.kitchen">Кухня</a>
+  <a href="#about" data-i18n="nav.about">О нас</a>
+  <a href="#news" data-i18n="nav.news">Новости</a>
+  <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
+  <a class="btn btn--primary" href="tel:+79991874770"><span data-i18n="mobile.callPrefix">Позвонить</span> +7 (999) 187-47-70</a>
+  <button class="lang-switch lang-switch--mobile" data-lang-switch type="button">RU</button>
 </nav>
 
 <main id="top">
@@ -59,36 +61,36 @@
 
     <div class="hero__inner">
       <div class="hero__left">
-        <span class="section-kicker">Мясо. Огонь. Город.</span>
-        <h1 class="hero__title">Сочный smash.<br>Честное мясо.<br><em>Ничего лишнего.</em></h1>
-        <p class="hero__text">
+        <span class="section-kicker" data-i18n="hero.kicker">Мясо. Огонь. Город.</span>
+        <h1 class="hero__title"><span data-i18n="hero.title1">Сочный smash.</span><br><span data-i18n="hero.title2">Честное мясо.</span><br><em data-i18n="hero.title3">Ничего лишнего.</em></h1>
+        <p class="hero__text" data-i18n="hero.text">
           Каждый бургер собираем после заказа: горячая булка, сочная котлета с хрустящей корочкой,
           расплавленный сыр и соусы собственного приготовления. Быстро, громко, по-настоящему вкусно.
         </p>
         <div class="hero__actions">
-          <a href="checkout.html" class="btn btn--primary">Заказать сейчас</a>
-          <a href="#menu" class="btn btn--ghost">Смотреть меню</a>
+          <a href="checkout.html" class="btn btn--primary" data-i18n="hero.ctaOrder">Заказать сейчас</a>
+          <a href="#menu" class="btn btn--ghost" data-i18n="hero.ctaMenu">Смотреть меню</a>
         </div>
       </div>
 
       <div class="hero__center">
         <div class="burger-stage">
-          <img class="burger-stage__img" src="assets/images/hero-burger.png" alt="Фирменный бургер МЯСО & БУЛКА" width="1100" height="1100" fetchpriority="high">
+          <img class="burger-stage__img" src="assets/images/hero-burger.png" data-i18n-attr="alt:hero.imgAlt" alt="Фирменный бургер МЯСО & БУЛКА" width="1100" height="1100" fetchpriority="high">
         </div>
       </div>
 
       <div class="hero__right">
         <div class="fact-card">
-          <div class="fact-card-title">Булочки каждый день</div>
-          <div class="fact-card-text">Выпекаем утром, чтобы к вечеру они оставались мягкими и ароматными.</div>
+          <div class="fact-card-title" data-i18n="hero.fact1Title">Булочки каждый день</div>
+          <div class="fact-card-text" data-i18n="hero.fact1Text">Выпекаем утром, чтобы к вечеру они оставались мягкими и ароматными.</div>
         </div>
         <div class="fact-card">
-          <div class="fact-card-title">Smash за 3 минуты</div>
-          <div class="fact-card-text">Котлета прижимается к грилю только после вашего заказа.</div>
+          <div class="fact-card-title" data-i18n="hero.fact2Title">Smash за 3 минуты</div>
+          <div class="fact-card-text" data-i18n="hero.fact2Text">Котлета прижимается к грилю только после вашего заказа.</div>
         </div>
         <div class="fact-card fact-card--light">
-          <div class="fact-card-title">Говядина 100%</div>
-          <div class="fact-card-text">Без панировки и лишних добавок — только мясо, соль и перец.</div>
+          <div class="fact-card-title" data-i18n="hero.fact3Title">Говядина 100%</div>
+          <div class="fact-card-text" data-i18n="hero.fact3Text">Без панировки и лишних добавок — только мясо, соль и перец.</div>
         </div>
       </div>
     </div>
@@ -97,18 +99,18 @@
   <!-- ============ Marquee ============ -->
   <div class="marquee" aria-hidden="true">
     <div class="marquee__track">
-      <span class="marquee__item">Свежие булочки</span>
-      <span class="marquee__item">Фирменные соусы</span>
-      <span class="marquee__item">Отборная говядина</span>
-      <span class="marquee__item">Готовим при заказе</span>
-      <span class="marquee__item">Хрустящий цыплёнок</span>
-      <span class="marquee__item">Картофель фри</span>
-      <span class="marquee__item">Свежие булочки</span>
-      <span class="marquee__item">Фирменные соусы</span>
-      <span class="marquee__item">Отборная говядина</span>
-      <span class="marquee__item">Готовим при заказе</span>
-      <span class="marquee__item">Хрустящий цыплёнок</span>
-      <span class="marquee__item">Картофель фри</span>
+      <span class="marquee__item" data-i18n="marquee.item1">Свежие булочки</span>
+      <span class="marquee__item" data-i18n="marquee.item2">Фирменные соусы</span>
+      <span class="marquee__item" data-i18n="marquee.item3">Отборная говядина</span>
+      <span class="marquee__item" data-i18n="marquee.item4">Готовим при заказе</span>
+      <span class="marquee__item" data-i18n="marquee.item5">Хрустящий цыплёнок</span>
+      <span class="marquee__item" data-i18n="marquee.item6">Картофель фри</span>
+      <span class="marquee__item" data-i18n="marquee.item1">Свежие булочки</span>
+      <span class="marquee__item" data-i18n="marquee.item2">Фирменные соусы</span>
+      <span class="marquee__item" data-i18n="marquee.item3">Отборная говядина</span>
+      <span class="marquee__item" data-i18n="marquee.item4">Готовим при заказе</span>
+      <span class="marquee__item" data-i18n="marquee.item5">Хрустящий цыплёнок</span>
+      <span class="marquee__item" data-i18n="marquee.item6">Картофель фри</span>
     </div>
   </div>
 
@@ -117,13 +119,13 @@
     <div class="shell">
       <div class="promo__card reveal">
         <div class="promo__media">
-          <img src="assets/images/promo-combo.png" alt="Комбо недели: бургеры, картофель фри и напиток" loading="lazy" width="1400" height="1400">
+          <img src="assets/images/promo-combo.png" data-i18n-attr="alt:promo.imgAlt" alt="Комбо недели: бургеры, картофель фри и напиток" loading="lazy" width="1400" height="1400">
         </div>
 
         <div class="promo__content">
-          <span class="promo__tag">Комбо недели</span>
-          <h2 class="promo__title">Smash + картофель + напиток</h2>
-          <p class="promo__text">
+          <span class="promo__tag" data-i18n="promo.tag">Комбо недели</span>
+          <h2 class="promo__title" data-i18n="promo.title">Smash + картофель + напиток</h2>
+          <p class="promo__text" data-i18n="promo.text">
             Тот самый набор, когда хочется не выбирать. Фирменный smash, золотистый картофель
             и холодный напиток — всё, что нужно для правильного обеда или позднего ужина.
           </p>
@@ -131,11 +133,11 @@
 
         <div class="promo__side">
           <div class="promo__price-row">
-            <span class="promo__from">от</span>
+            <span class="promo__from" data-i18n="promo.from">от</span>
             <div class="promo__price">590 ₽</div>
           </div>
-          <a href="#menu" class="btn">Выбрать комбо</a>
-          <div class="promo__note">Действует ежедневно с 12:00 до 17:00</div>
+          <a href="#menu" class="btn" data-i18n="promo.cta">Выбрать комбо</a>
+          <div class="promo__note" data-i18n="promo.note">Действует ежедневно с 12:00 до 17:00</div>
         </div>
       </div>
     </div>
@@ -146,10 +148,10 @@
     <div class="shell">
       <div class="section__head reveal">
         <div class="section__head-left">
-          <span class="section-kicker">Готовим на месте</span>
-          <h2 class="section-title">Больше вкуса.<br>Меньше <span class="grad-text">лишних слов</span></h2>
+          <span class="section-kicker" data-i18n="kitchen.kicker">Готовим на месте</span>
+          <h2 class="section-title"><span data-i18n="kitchen.titleLine1">Больше вкуса.</span><br><span data-i18n="kitchen.titleLine2Pre">Меньше </span><span class="grad-text" data-i18n="kitchen.titleLine2Grad">лишних слов</span></h2>
         </div>
-        <p class="section-lead">
+        <p class="section-lead" data-i18n="kitchen.lead">
           Нам важен каждый слой: от румяной булки до последней капли соуса. Не усложняем рецепты
           ради моды — просто берём хорошие продукты и готовим их так, как любим сами.
         </p>
@@ -158,12 +160,12 @@
       <div class="tiles">
         <article class="tile reveal">
           <div class="tile__media">
-            <img src="assets/menu/american-classic.jpg" alt="Румяная булочка бургера" loading="lazy" width="760" height="506">
-            <span class="tile__chip">Булочки</span>
+            <img src="assets/menu/american-classic.jpg" data-i18n-attr="alt:tile1.alt" alt="Румяная булочка бургера" loading="lazy" width="760" height="506">
+            <span class="tile__chip" data-i18n="tile1.chip">Булочки</span>
           </div>
           <div class="tile__body">
-            <h3 class="tile__title">Румяные снаружи, мягкие внутри</h3>
-            <p class="tile__text">
+            <h3 class="tile__title" data-i18n="tile1.title">Румяные снаружи, мягкие внутри</h3>
+            <p class="tile__text" data-i18n="tile1.text">
               Булочки с лёгкой сладостью и тонкой хрустящей корочкой. Идеально держат сочность
               бургера, не распадаясь в руках.
             </p>
@@ -172,12 +174,12 @@
 
         <article class="tile reveal">
           <div class="tile__media">
-            <img src="assets/menu/bacon-jam.jpg" alt="Сочная говяжья котлета с хрустящей корочкой" loading="lazy" width="760" height="506">
-            <span class="tile__chip">Мясо</span>
+            <img src="assets/menu/bacon-jam.jpg" data-i18n-attr="alt:tile2.alt" alt="Сочная говяжья котлета с хрустящей корочкой" loading="lazy" width="760" height="506">
+            <span class="tile__chip" data-i18n="tile2.chip">Мясо</span>
           </div>
           <div class="tile__body">
-            <h3 class="tile__title">Хрустящая корочка, сочная середина</h3>
-            <p class="tile__text">
+            <h3 class="tile__title" data-i18n="tile2.title">Хрустящая корочка, сочная середина</h3>
+            <p class="tile__text" data-i18n="tile2.text">
               Каждую котлету прижимаем к раскалённому грилю. Так появляется тот самый аромат
               жареного мяса и насыщенный вкус без лишних специй.
             </p>
@@ -186,12 +188,12 @@
 
         <article class="tile reveal">
           <div class="tile__media">
-            <img src="assets/images/cheese-pull.jpg" alt="Соус собственного приготовления" loading="lazy" width="760" height="506">
-            <span class="tile__chip">Соусы</span>
+            <img src="assets/images/cheese-pull.jpg" data-i18n-attr="alt:tile3.alt" alt="Соус собственного приготовления" loading="lazy" width="760" height="506">
+            <span class="tile__chip" data-i18n="tile3.chip">Соусы</span>
           </div>
           <div class="tile__body">
-            <h3 class="tile__title">Соус — не дополнение, а характер</h3>
-            <p class="tile__text">
+            <h3 class="tile__title" data-i18n="tile3.title">Соус — не дополнение, а характер</h3>
+            <p class="tile__text" data-i18n="tile3.text">
               Сырный, дымный барбекю, пикантный чили и наш фирменный — готовим на кухне
               и подбираем к каждому бургеру.
             </p>
@@ -206,10 +208,10 @@
     <div class="shell">
       <div class="section__head reveal">
         <div class="section__head-left">
-          <span class="section-kicker">Меню</span>
-          <h2 class="section-title">Выбирай.<br>Добавляй. <span class="grad-text">Заказывай.</span></h2>
+          <span class="section-kicker" data-i18n="menu.kicker">Меню</span>
+          <h2 class="section-title"><span data-i18n="menu.titleLine1">Выбирай.</span><br><span data-i18n="menu.titleLine2Pre">Добавляй. </span><span class="grad-text" data-i18n="menu.titleLine2Grad">Заказывай.</span></h2>
         </div>
-        <p class="section-lead">
+        <p class="section-lead" data-i18n="menu.lead">
           Выберите категорию, добавьте любимые позиции в корзину и заберите заказ на месте
           или оформите доставку.
         </p>
@@ -224,25 +226,25 @@
     <div class="shell">
       <div class="about__grid">
         <div class="reveal">
-          <span class="section-kicker">О нас</span>
-          <p class="about__quote">«Начали с маленького гриля. Теперь кормим весь город»</p>
+          <span class="section-kicker" data-i18n="about.kicker">О нас</span>
+          <p class="about__quote" data-i18n="about.quote">«Начали с маленького гриля. Теперь кормим весь город»</p>
           <div class="about__text">
-            <p>
+            <p data-i18n="about.text">
               МЯСО & БУЛКА — это место для тех, кто ценит понятную еду и не готов мириться
               с посредственным вкусом. Мы не прячем ингредиенты за длинными названиями:
               показываем мясо, даём много сыра и подаём бургер горячим.
             </p>
           </div>
           <div class="about__sign">
-            <div class="about__sign-name">Команда МЯСО &amp; БУЛКА</div>
+            <div class="about__sign-name" data-i18n="about.signName">Команда МЯСО &amp; БУЛКА</div>
           </div>
         </div>
 
         <div class="about__stats reveal">
-          <div class="stat"><div class="stat__value">2019</div><div class="stat__label">Открылись для первых гостей</div></div>
-          <div class="stat"><div class="stat__value">120 г</div><div class="stat__label">Вес одной smash-котлеты</div></div>
-          <div class="stat"><div class="stat__value">28</div><div class="stat__label">Позиций в меню</div></div>
-          <div class="stat"><div class="stat__value">100%</div><div class="stat__label">Готовим после заказа</div></div>
+          <div class="stat"><div class="stat__value" data-i18n="about.stat1Value">2019</div><div class="stat__label" data-i18n="about.stat1Label">Открылись для первых гостей</div></div>
+          <div class="stat"><div class="stat__value" data-i18n="about.stat2Value">120 г</div><div class="stat__label" data-i18n="about.stat2Label">Вес одной smash-котлеты</div></div>
+          <div class="stat"><div class="stat__value" data-i18n="about.stat3Value">28</div><div class="stat__label" data-i18n="about.stat3Label">Позиций в меню</div></div>
+          <div class="stat"><div class="stat__value" data-i18n="about.stat4Value">100%</div><div class="stat__label" data-i18n="about.stat4Label">Готовим после заказа</div></div>
         </div>
       </div>
     </div>
@@ -253,35 +255,35 @@
     <div class="shell">
       <div class="section__head reveal">
         <div class="section__head-left">
-          <span class="section-kicker">Новости</span>
-          <h2 class="section-title">Что нового?</h2>
+          <span class="section-kicker" data-i18n="news.kicker">Новости</span>
+          <h2 class="section-title" data-i18n="news.title">Что нового?</h2>
         </div>
       </div>
 
       <div class="news-grid">
         <article class="post reveal">
           <div class="post__num">01</div>
-          <h3 class="post__title">Новый SMASH 2.0 уже в меню</h3>
-          <p class="post__text">Две тонкие котлеты, двойной чеддер и фирменный соус. Вкус, ради которого хочется отменить планы на вечер.</p>
-          <span class="post__more">Читать <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          <h3 class="post__title" data-i18n="news.post1Title">Новый SMASH 2.0 уже в меню</h3>
+          <p class="post__text" data-i18n="news.post1Text">Две тонкие котлеты, двойной чеддер и фирменный соус. Вкус, ради которого хочется отменить планы на вечер.</p>
+          <span class="post__more"><span data-i18n="news.readMore">Читать</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
         </article>
         <article class="post reveal">
           <div class="post__num">02</div>
-          <h3 class="post__title">Комбо для правильного обеда</h3>
-          <p class="post__text">С понедельника по пятницу собираем ваш любимый бургер, картофель и напиток по специальной цене.</p>
-          <span class="post__more">Читать <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          <h3 class="post__title" data-i18n="news.post2Title">Комбо для правильного обеда</h3>
+          <p class="post__text" data-i18n="news.post2Text">С понедельника по пятницу собираем ваш любимый бургер, картофель и напиток по специальной цене.</p>
+          <span class="post__more"><span data-i18n="news.readMore">Читать</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
         </article>
         <article class="post reveal">
           <div class="post__num">03</div>
-          <h3 class="post__title">Соус недели: копчёный чили</h3>
-          <p class="post__text">Добавили в меню новый соус — острый, дымный и идеально подходящий к курице и картофелю.</p>
-          <span class="post__more">Читать <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          <h3 class="post__title" data-i18n="news.post3Title">Соус недели: копчёный чили</h3>
+          <p class="post__text" data-i18n="news.post3Text">Добавили в меню новый соус — острый, дымный и идеально подходящий к курице и картофелю.</p>
+          <span class="post__more"><span data-i18n="news.readMore">Читать</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
         </article>
         <article class="post reveal">
           <div class="post__num">04</div>
-          <h3 class="post__title">Доставка стала быстрее</h3>
-          <p class="post__text">Собираем заказ сразу после подтверждения, чтобы бургер приехал горячим, а картофель — хрустящим.</p>
-          <span class="post__more">Читать <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
+          <h3 class="post__title" data-i18n="news.post4Title">Доставка стала быстрее</h3>
+          <p class="post__text" data-i18n="news.post4Text">Собираем заказ сразу после подтверждения, чтобы бургер приехал горячим, а картофель — хрустящим.</p>
+          <span class="post__more"><span data-i18n="news.readMore">Читать</span> <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg></span>
         </article>
       </div>
     </div>
@@ -292,34 +294,34 @@
     <div class="shell">
       <div class="section__head reveal">
         <div class="section__head-left">
-          <span class="section-kicker">Контакты</span>
-          <h2 class="section-title">Ждём тебя<br>в гостях</h2>
+          <span class="section-kicker" data-i18n="contacts.kicker">Контакты</span>
+          <h2 class="section-title"><span data-i18n="contacts.titleLine1">Ждём тебя</span><br><span data-i18n="contacts.titleLine2">в гостях</span></h2>
         </div>
-        <p class="section-lead">
+        <p class="section-lead" data-i18n="contacts.lead">
           Заходите после работы, забирайте заказ по пути домой или оставайтесь на долгий вечер с друзьями.
         </p>
       </div>
 
       <div class="contacts__grid">
         <a class="contact-card reveal" href="tel:+79991874770">
-          <div class="contact-card__label">Телефон</div>
+          <div class="contact-card__label" data-i18n="contacts.phoneLabel">Телефон</div>
           <div class="contact-card__value">+7 (999) 187-47-70</div>
-          <div class="contact-card__note">Звонки принимаем в часы работы</div>
+          <div class="contact-card__note" data-i18n="contacts.phoneNote">Звонки принимаем в часы работы</div>
         </a>
         <div class="contact-card reveal">
-          <div class="contact-card__label">Адрес</div>
-          <div class="contact-card__value">Екатеринбург,<br>ул. Розы Люксембург, 67</div>
-          <div class="contact-card__note">Вход со стороны ул. Декабристов, рядом с аркой во двор</div>
+          <div class="contact-card__label" data-i18n="contacts.addressLabel">Адрес</div>
+          <div class="contact-card__value"><span data-i18n="contacts.addressLine1">Екатеринбург,</span><br><span data-i18n="contacts.addressLine2">ул. Розы Люксембург, 67</span></div>
+          <div class="contact-card__note" data-i18n="contacts.addressNote">Вход со стороны ул. Декабристов, рядом с аркой во двор</div>
         </div>
         <div class="contact-card reveal">
-          <div class="contact-card__label">Часы работы</div>
-          <div class="contact-card__value">Пн–Чт: 12:00–23:00<br>Пт–Сб: 12:00–00:00<br>Вс: 12:00–23:00</div>
-          <div class="contact-card__note">Готовим до самого закрытия</div>
+          <div class="contact-card__label" data-i18n="contacts.hoursLabel">Часы работы</div>
+          <div class="contact-card__value"><span data-i18n="contacts.hoursLine1">Пн–Чт: 12:00–23:00</span><br><span data-i18n="contacts.hoursLine2">Пт–Сб: 12:00–00:00</span><br><span data-i18n="contacts.hoursLine3">Вс: 12:00–23:00</span></div>
+          <div class="contact-card__note" data-i18n="contacts.hoursNote">Готовим до самого закрытия</div>
         </div>
         <a class="contact-card reveal" href="mailto:hello@myasoibulka.ru">
-          <div class="contact-card__label">Почта</div>
+          <div class="contact-card__label" data-i18n="contacts.emailLabel">Почта</div>
           <div class="contact-card__value">hello@myasoibulka.ru</div>
-          <div class="contact-card__note">Для сотрудничества и мероприятий</div>
+          <div class="contact-card__note" data-i18n="contacts.emailNote">Для сотрудничества и мероприятий</div>
         </a>
       </div>
     </div>
@@ -328,11 +330,11 @@
 
 <footer class="footer">
   <div class="shell footer__inner">
-    <div>© МЯСО &amp; БУЛКА — 2026. Все права защищены.</div>
+    <div data-i18n="footer.copyright">© МЯСО &amp; БУЛКА — 2026. Все права защищены.</div>
     <div class="footer__links">
-      <a href="#menu">Меню</a>
-      <a href="checkout.html">Заказать</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#menu" data-i18n="nav.menu">Меню</a>
+      <a href="checkout.html" data-i18n="footer.order">Заказать</a>
+      <a href="#contacts" data-i18n="nav.contacts">Контакты</a>
       <a href="tel:+79991874770">+7 (999) 187-47-70</a>
     </div>
   </div>
@@ -344,26 +346,27 @@
     <div class="cart-bar__count" data-cart-bar-count>0 позиций</div>
     <div class="cart-bar__total" data-cart-bar-total>0 ₽</div>
   </div>
-  <button class="btn btn--ghost" type="button" data-cart-open>Корзина</button>
-  <a class="btn btn--primary" href="checkout.html">Оформить</a>
+  <button class="btn btn--ghost" type="button" data-cart-open data-i18n="header.cart">Корзина</button>
+  <a class="btn btn--primary" href="checkout.html" data-i18n="cartbar.checkout">Оформить</a>
 </div>
 
 <!-- ============ Cart drawer ============ -->
 <div class="drawer-backdrop" data-cart-close></div>
-<aside class="drawer" id="cart-drawer" aria-label="Корзина" aria-hidden="true">
+<aside class="drawer" id="cart-drawer" data-i18n-attr="aria-label:drawer.title" aria-label="Корзина" aria-hidden="true">
   <div class="drawer__head">
-    <div class="drawer__title">Ваш заказ</div>
-    <button class="drawer__close" type="button" data-cart-close aria-label="Закрыть корзину">
+    <div class="drawer__title" data-i18n="drawer.title">Ваш заказ</div>
+    <button class="drawer__close" type="button" data-cart-close data-i18n-attr="aria-label:drawer.closeAria">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="drawer__body" data-cart-lines></div>
   <div class="drawer__foot">
-    <div class="drawer__sum"><span>Итого</span><b data-cart-total>0 ₽</b></div>
-    <a class="btn btn--primary btn--block" href="checkout.html" data-cart-checkout>Оформить заказ</a>
+    <div class="drawer__sum"><span data-i18n="common.total">Итого</span><b data-cart-total>0 ₽</b></div>
+    <a class="btn btn--primary btn--block" href="checkout.html" data-cart-checkout data-i18n="drawer.checkout">Оформить заказ</a>
   </div>
 </aside>
 
+<script src="js/i18n.js"></script>
 <script src="js/menu-data.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/main.js"></script>

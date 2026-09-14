@@ -7,6 +7,8 @@ const ORDER_KEY = 'mb_order';
 const WORK_HOURS = { open: 12, close: 23 }; // extended Fri/Sat below
 const DAY_NAMES = ['воскресенье', 'понедельник', 'вторник', 'среда', 'четверг', 'пятница', 'суббота'];
 const MONTH_NAMES = ['янв', 'фев', 'мар', 'апр', 'мая', 'июн', 'июл', 'авг', 'сен', 'окт', 'ноя', 'дек'];
+const DAY_NAMES_EN = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const MONTH_NAMES_EN = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 /* ---------- Order summary ---------- */
 
@@ -16,6 +18,7 @@ function renderSummary() {
   if (!box) return;
 
   box.innerHTML = Cart.getItems()
+    .map((it) => Cart.resolveLine(it))
     .map(
       (it) => `
       <div class="summary__line">
@@ -75,11 +78,13 @@ function closeHourFor(day) {
   return day === 5 || day === 6 ? 24 : WORK_HOURS.close;
 }
 
-function buildTimeSlots(select) {
-  const now = new Date();
-  const options = [];
+let timeSlots = [];
 
-  for (let offset = 0; offset < 3 && options.length === 0; offset += 1) {
+function computeTimeSlots() {
+  const now = new Date();
+  const slots = [];
+
+  for (let offset = 0; offset < 3 && slots.length === 0; offset += 1) {
     const day = new Date(now);
     day.setDate(now.getDate() + offset);
 
@@ -103,17 +108,46 @@ function buildTimeSlots(select) {
     }
 
     for (let t = new Date(start); t <= end; t = new Date(t.getTime() + 15 * 60 * 1000)) {
-      const hhmm = `${String(t.getHours()).padStart(2, '0')}:${String(t.getMinutes()).padStart(2, '0')}`;
-      const label = offset === 0 ? `Сегодня, ${hhmm}` : `${DAY_NAMES[day.getDay()]}, ${MONTH_NAMES[day.getMonth()]} ${day.getDate()} — ${hhmm}`;
-      options.push({ value: label, label });
+      slots.push({ date: t, offsetDays: offset });
     }
   }
 
-  select.innerHTML =
-    '<option value="">Выберите время</option>' +
-    options.map((o) => `<option value="${escapeText(o.value)}">${escapeText(o.label)}</option>`).join('');
+  return slots;
+}
 
-  if (options.length) select.value = options[0].value;
+function slotLabel(slot) {
+  const hhmm = `${String(slot.date.getHours()).padStart(2, '0')}:${String(slot.date.getMinutes()).padStart(2, '0')}`;
+  if (slot.offsetDays === 0) return `${I18N.t('checkout.today')}, ${hhmm}`;
+  const dayNames = I18N.getLang() === 'en' ? DAY_NAMES_EN : DAY_NAMES;
+  const monthNames = I18N.getLang() === 'en' ? MONTH_NAMES_EN : MONTH_NAMES;
+  return `${dayNames[slot.date.getDay()]}, ${monthNames[slot.date.getMonth()]} ${slot.date.getDate()} — ${hhmm}`;
+}
+
+/* Option values are slot indices (language-independent) so re-rendering
+   the labels on a language switch can keep the same selection. */
+function renderTimeOptions(select, forceFirst) {
+  const prevValue = select.value;
+
+  select.innerHTML =
+    `<option value="">${escapeText(I18N.t('checkout.timeSelectDefault'))}</option>` +
+    timeSlots.map((slot, i) => `<option value="${i}">${escapeText(slotLabel(slot))}</option>`).join('');
+
+  if (!timeSlots.length) return;
+  if (!forceFirst && prevValue !== '' && Number(prevValue) < timeSlots.length) {
+    select.value = prevValue;
+  } else {
+    select.value = '0';
+  }
+}
+
+function buildTimeSlots(select) {
+  timeSlots = computeTimeSlots();
+  renderTimeOptions(select, true);
+}
+
+function selectedTimeLabel(select) {
+  const idx = Number(select.value);
+  return Number.isInteger(idx) && timeSlots[idx] ? slotLabel(timeSlots[idx]) : select.value;
 }
 
 /* ---------- Validation ---------- */
@@ -158,6 +192,11 @@ function validate(form) {
   bindPhoneMask(form.phone);
   buildTimeSlots(form.time);
 
+  document.addEventListener('langchange', () => {
+    renderSummary();
+    renderTimeOptions(form.time, false);
+  });
+
   ['name', 'phone', 'time'].forEach((key) => {
     form[key].addEventListener('blur', () => validate(form));
     form[key].addEventListener('input', () => setError(key, false));
@@ -176,7 +215,7 @@ function validate(form) {
       name: form.name.value.trim(),
       phone: form.phone.value.trim(),
       pickup: form.querySelector('input[name="pickup"]:checked').value,
-      time: form.time.value,
+      time: selectedTimeLabel(form.time),
       comment: form.comment.value.trim(),
       items: Cart.getItems(),
       total: Cart.total()

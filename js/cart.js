@@ -61,6 +61,16 @@ const Cart = (() => {
   const count = () => items.reduce((sum, it) => sum + it.qty, 0);
   const total = () => items.reduce((sum, it) => sum + it.price * it.qty, 0);
 
+  /* Re-derive the displayed name from MENU_INDEX + the current language
+     at render time, instead of trusting the name baked into the stored
+     line at add-to-cart time — so switching languages updates cart,
+     checkout, payment and success line items without a reload. */
+  function resolveLine(it) {
+    const menuItem = (typeof MENU_INDEX !== 'undefined') ? MENU_INDEX[it.id] : null;
+    const name = menuItem ? menuText(menuItem, 'name') : it.name;
+    return { ...it, name: name || it.name };
+  }
+
   function subscribe(fn) {
     listeners.push(fn);
     fn(items);
@@ -70,7 +80,7 @@ const Cart = (() => {
     };
   }
 
-  return { add, setQty, remove, clear, getItems, getQty, count, total, subscribe };
+  return { add, setQty, remove, clear, getItems, getQty, count, total, subscribe, resolveLine };
 })();
 
 /* ---------- Shared helpers ---------- */
@@ -83,6 +93,15 @@ function plural(n, one, few, many) {
   if (mod10 === 1 && mod100 !== 11) return one;
   if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
   return many;
+}
+
+/* Language-aware "N items" label used in the sticky cart bar and the
+   menu accordion group headers. */
+function itemsCountLabel(n) {
+  if (typeof I18N !== 'undefined' && I18N.getLang && I18N.getLang() === 'en') {
+    return `${n} ${n === 1 ? 'item' : 'items'}`;
+  }
+  return `${n} ${plural(n, 'позиция', 'позиции', 'позиций')}`;
 }
 
 /* Cart icon in the header + sticky bar — present on every page */
@@ -100,8 +119,12 @@ function bindCartIndicators() {
     });
     if (bar) {
       bar.classList.toggle('is-visible', n > 0);
-      if (barCount) barCount.textContent = `${n} ${plural(n, 'позиция', 'позиции', 'позиций')}`;
+      if (barCount) barCount.textContent = itemsCountLabel(n);
       if (barTotal) barTotal.textContent = formatPrice(Cart.total());
     }
+  });
+  document.addEventListener('langchange', () => {
+    const n = Cart.count();
+    if (bar && barCount) barCount.textContent = itemsCountLabel(n);
   });
 }

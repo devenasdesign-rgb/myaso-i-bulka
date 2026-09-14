@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оплата — МЯСО & БУЛКА</title>
+<title data-i18n="meta.paymentTitle">Оплата — МЯСО & БУЛКА</title>
 <meta name="description" content="Оплатите заказ в МЯСО & БУЛКА: банковской картой, по QR-коду или наличными при получении.">
 <meta name="theme-color" content="#0d0b0a">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
@@ -19,12 +19,13 @@
   <div class="header__inner">
     <a href="index.html" class="logo">МЯСО <span>&amp; БУЛКА</span></a>
     <nav class="nav">
-      <a href="index.html#menu">Меню</a>
-      <a href="checkout.html">Детали заказа</a>
-      <a href="index.html#contacts">Контакты</a>
+      <a href="index.html#menu" data-i18n="nav.menu">Меню</a>
+      <a href="checkout.html" data-i18n="nav.orderDetails">Детали заказа</a>
+      <a href="index.html#contacts" data-i18n="nav.contacts">Контакты</a>
     </nav>
     <div class="header__actions">
       <a class="header__phone" href="tel:+79991874770">+7 (999) 187-47-70</a>
+      <button class="lang-switch" data-lang-switch type="button">RU</button>
     </div>
   </div>
 </header>
@@ -33,28 +34,28 @@
   <div class="shell">
 
     <div class="order-empty" id="empty-state" hidden>
-      <div class="order-empty__title">Заказ не найден</div>
-      <p class="order-empty__text">Похоже, оформление заказа не было завершено. Соберите заказ в меню и попробуйте снова.</p>
-      <a class="btn btn--primary" href="index.html#menu">Перейти в меню</a>
+      <div class="order-empty__title" data-i18n="payment.emptyTitle">Заказ не найден</div>
+      <p class="order-empty__text" data-i18n="payment.emptyText">Похоже, оформление заказа не было завершено. Соберите заказ в меню и попробуйте снова.</p>
+      <a class="btn btn--primary" href="index.html#menu" data-i18n="common.goToMenu">Перейти в меню</a>
     </div>
 
     <div id="payment-root" hidden>
       <div class="order-head">
         <div class="order-steps">
-          <span class="order-step is-done"><b>1</b> Оформление</span>
+          <span class="order-step is-done"><b>1</b> <span data-i18n="steps.step1">Оформление</span></span>
           <span class="order-steps__sep">—</span>
-          <span class="order-step is-active"><b>2</b> Оплата</span>
+          <span class="order-step is-active"><b>2</b> <span data-i18n="steps.step2">Оплата</span></span>
           <span class="order-steps__sep">—</span>
-          <span class="order-step"><b>3</b> Готово</span>
+          <span class="order-step"><b>3</b> <span data-i18n="steps.step3">Готово</span></span>
         </div>
-        <h1 class="order-title">Оплата</h1>
-        <p class="order-sub">Выберите удобный способ. После оплаты заказ уйдёт на кухню, и мы начнём готовить к выбранному времени.</p>
+        <h1 class="order-title" data-i18n="payment.title">Оплата</h1>
+        <p class="order-sub" data-i18n="payment.sub">Выберите удобный способ. После оплаты заказ уйдёт на кухню, и мы начнём готовить к выбранному времени.</p>
       </div>
 
       <div class="order-grid">
         <div>
           <section class="panel">
-            <h2 class="panel__title">Способ оплаты</h2>
+            <h2 class="panel__title" data-i18n="payment.methodTitle">Способ оплаты</h2>
 
             <div class="pay-methods">
               <label class="choice">
@@ -62,8 +63,8 @@
                 <span class="choice__box">
                   <span class="choice__mark"></span>
                   <span>
-                    <span class="choice__title">Картой онлайн</span>
-                    <span class="choice__note">Visa, Mastercard, Мир — оплата прямо на сайте</span>
+                    <span class="choice__title" data-i18n="payment.cardLabel">Картой онлайн</span>
+                    <span class="choice__note" data-i18n="payment.cardNote">Visa, Mastercard, Мир — оплата прямо на сайте</span>
                   </span>
                 </span>
               </label>
@@ -72,8 +73,8 @@
                 <span class="choice__box">
                   <span class="choice__mark"></span>
                   <span>
-                    <span class="choice__title">Оплата по QR-коду</span>
-                    <span class="choice__note">Отсканируйте код в приложении банка</span>
+                    <span class="choice__title" data-i18n="payment.qrLabel">Оплата по QR-коду</span>
+                    <span class="choice__note" data-i18n="payment.qrNote">Отсканируйте код в приложении банка</span>
                   </span>
                 </span>
               </label>
@@ -82,8 +83,8 @@
                 <span class="choice__box">
                   <span class="choice__mark"></span>
                   <span>
-                    <span class="choice__title">Наличными при получении</span>
-                    <span class="choice__note">Оплатите на кассе или курьеру</span>
+                    <span class="choice__title" data-i18n="payment.cashLabel">Наличными при получении</span>
+                    <span class="choice__note" data-i18n="payment.cashNote">Оплатите на кассе или курьеру</span>
                   </span>
                 </span>
               </label>
@@ -92,37 +93,37 @@
             <!-- Card -->
             <div class="card-form is-visible" id="block-card">
               <div class="card-preview">
-                <div class="card-preview__brand">МЯСО &amp; БУЛКА · Оплата</div>
+                <div class="card-preview__brand" data-i18n="payment.cardPreviewBrand">МЯСО &amp; БУЛКА · Оплата</div>
                 <div class="card-preview__number" id="card-preview-number">•••• •••• •••• ••••</div>
                 <div class="card-preview__row">
-                  <div><span>Владелец карты</span><div id="card-preview-holder">ИМЯ ФАМИЛИЯ</div></div>
-                  <div><span>Срок действия</span><div id="card-preview-exp">ММ/ГГ</div></div>
+                  <div><span data-i18n="payment.cardPreviewHolderLabel">Владелец карты</span><div id="card-preview-holder">ИМЯ ФАМИЛИЯ</div></div>
+                  <div><span data-i18n="payment.cardPreviewExpLabel">Срок действия</span><div id="card-preview-exp">ММ/ГГ</div></div>
                 </div>
               </div>
 
               <form id="card-form" novalidate>
                 <div class="field" data-field="number">
-                  <label class="field__label" for="card-number">Номер карты</label>
+                  <label class="field__label" for="card-number" data-i18n="payment.cardNumberLabel">Номер карты</label>
                   <input class="input" id="card-number" inputmode="numeric" autocomplete="off" placeholder="0000 0000 0000 0000" maxlength="23">
-                  <div class="field__error">Проверьте номер карты — что-то не так</div>
+                  <div class="field__error" data-i18n="payment.cardNumberError">Проверьте номер карты — что-то не так</div>
                 </div>
 
                 <div class="field" data-field="holder">
-                  <label class="field__label" for="card-holder">Имя на карте</label>
+                  <label class="field__label" for="card-holder" data-i18n="payment.cardHolderFieldLabel">Имя на карте</label>
                   <input class="input" id="card-holder" autocomplete="off" placeholder="IVAN IVANOV">
-                  <div class="field__error">Введите имя латинскими буквами, как на карте</div>
+                  <div class="field__error" data-i18n="payment.cardHolderError">Введите имя латинскими буквами, как на карте</div>
                 </div>
 
                 <div class="field-row">
                   <div class="field" data-field="exp">
-                    <label class="field__label" for="card-exp">Срок действия карты</label>
-                    <input class="input" id="card-exp" inputmode="numeric" autocomplete="off" placeholder="ММ/ГГ" maxlength="5">
-                    <div class="field__error">Формат ММ/ГГ, дата не может быть в прошлом</div>
+                    <label class="field__label" for="card-exp" data-i18n="payment.cardExpFieldLabel">Срок действия карты</label>
+                    <input class="input" id="card-exp" inputmode="numeric" autocomplete="off" placeholder="ММ/ГГ" maxlength="5" data-i18n-attr="placeholder:payment.cardExpPlaceholder">
+                    <div class="field__error" data-i18n="payment.cardExpError">Формат ММ/ГГ, дата не может быть в прошлом</div>
                   </div>
                   <div class="field" data-field="cvc">
-                    <label class="field__label" for="card-cvc">CVC / CVV</label>
+                    <label class="field__label" for="card-cvc" data-i18n="payment.cardCvcLabel">CVC / CVV</label>
                     <input class="input" id="card-cvc" inputmode="numeric" type="password" autocomplete="off" placeholder="•••" maxlength="4">
-                    <div class="field__error">3 или 4 цифры на обороте карты</div>
+                    <div class="field__error" data-i18n="payment.cardCvcError">3 или 4 цифры на обороте карты</div>
                   </div>
                 </div>
               </form>
@@ -131,15 +132,12 @@
             <!-- QR -->
             <div class="qr-block" id="block-qr">
               <div class="qr-frame" id="qr-frame" aria-hidden="true"></div>
-              <p class="section-lead" style="margin-inline:auto;text-align:center">
-                Откройте приложение банка, отсканируйте код и подтвердите оплату
-                <b id="qr-sum" style="color:var(--text)"></b>.
-              </p>
+              <p class="section-lead" id="qr-text" style="margin-inline:auto;text-align:center"></p>
             </div>
 
             <!-- Cash -->
             <div class="cash-block" id="block-cash">
-              <p class="section-lead">
+              <p class="section-lead" data-i18n="payment.cashText">
                 Заказ сразу уходит на кухню — оплатите лично картой, по QR-коду или наличными при получении.
                 Пожалуйста, приходите к выбранному времени: бургер вкуснее всего в первые десять минут.
               </p>
@@ -152,9 +150,9 @@
             <div class="notice" style="margin-top:20px">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v4h1"/></svg>
               <div>
-                <b>Демо-режим.</b> Платёжный провайдер пока не подключён: деньги не списываются,
+                <b data-i18n="payment.demoTitle">Демо-режим.</b> <span data-i18n="payment.demoText">Платёжный провайдер пока не подключён: деньги не списываются,
                 а данные карты никуда не отправляются и не сохраняются. Чтобы принимать настоящие платежи,
-                нужно подключить платёжный шлюз (например, ЮKassa или Stripe) — точка подключения уже готова в одном месте:
+                нужно подключить платёжный шлюз (например, ЮKassa или Stripe) — точка подключения уже готова в одном месте:</span>
                 <code>processPayment()</code>.
               </div>
             </div>
@@ -163,11 +161,11 @@
 
         <aside class="aside">
           <section class="panel">
-            <h2 class="panel__title">Заказ</h2>
+            <h2 class="panel__title" data-i18n="payment.orderPanelTitle">Заказ</h2>
             <div class="summary__lines" data-summary-lines></div>
-            <div class="summary__total"><span>К оплате</span><b data-summary-total>0 ₽</b></div>
+            <div class="summary__total"><span data-i18n="payment.payTotalLabel">К оплате</span><b data-summary-total>0 ₽</b></div>
             <div class="summary__note" id="order-meta"></div>
-            <a class="btn btn--ghost btn--block" href="checkout.html" style="margin-top:18px">Изменить данные</a>
+            <a class="btn btn--ghost btn--block" href="checkout.html" style="margin-top:18px" data-i18n="payment.editDataLink">Изменить данные</a>
           </section>
         </aside>
       </div>
@@ -175,6 +173,7 @@
   </div>
 </main>
 
+<script src="js/i18n.js"></script>
 <script src="js/menu-data.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/payment.js"></script>

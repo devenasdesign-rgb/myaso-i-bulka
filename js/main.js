@@ -18,16 +18,19 @@ const escapeHtml = (str) =>
 /* ---------- Menu rendering ---------- */
 
 function dishMarkup(item) {
-  const comp = item.comp ? item.comp.join(' · ') : '';
+  const name = menuText(item, 'name');
+  const compList = menuText(item, 'comp');
+  const comp = compList ? compList.join(' · ') : '';
+  const mark = menuText(item, 'mark');
 
   return `
     <article class="dish" data-dish="${escapeHtml(item.id)}">
       <div class="dish__media">
-        <img src="${escapeHtml(item.img)}" alt="${escapeHtml(item.name)}" loading="lazy" width="760" height="506">
-        ${item.mark ? `<span class="dish__mark">${escapeHtml(item.mark)}</span>` : ''}
+        <img src="${escapeHtml(item.img)}" alt="${escapeHtml(name)}" loading="lazy" width="760" height="506">
+        ${mark ? `<span class="dish__mark">${escapeHtml(mark)}</span>` : ''}
       </div>
       <div class="dish__body">
-        <h3 class="dish__name">${escapeHtml(item.name)}</h3>
+        <h3 class="dish__name">${escapeHtml(name)}</h3>
         ${comp ? `<p class="dish__comp">${escapeHtml(comp)}</p>` : ''}
         <div class="dish__foot">
           <div class="dish__price" data-price-view>${formatPrice(item.price)}</div>
@@ -37,20 +40,28 @@ function dishMarkup(item) {
     </article>`;
 }
 
+let dishUnsubs = [];
+
 function renderMenu() {
   const root = document.getElementById('menu-groups');
   if (!root) return;
 
+  const openIndex = [...root.querySelectorAll('[data-group]')].findIndex((g) => g.classList.contains('is-open'));
+  const activeIndex = openIndex > -1 ? openIndex : 0;
+
+  dishUnsubs.forEach((unsub) => unsub());
+  dishUnsubs = [];
+
   root.innerHTML = MENU.map(
     (section, index) => `
-    <section class="mgroup${index === 0 ? ' is-open' : ''}" data-group>
-      <button class="mgroup__head" type="button" aria-expanded="${index === 0}" aria-controls="panel-${section.id}">
+    <section class="mgroup${index === activeIndex ? ' is-open' : ''}" data-group>
+      <button class="mgroup__head" type="button" aria-expanded="${index === activeIndex}" aria-controls="panel-${section.id}">
         <span class="mgroup__icon">${SECTION_ICONS[section.id] || ''}</span>
         <span class="mgroup__titles">
-          <span class="mgroup__title">${escapeHtml(section.title)}</span>
-          <span class="mgroup__sub">${escapeHtml(section.subtitle)}</span>
+          <span class="mgroup__title">${escapeHtml(menuText(section, 'title'))}</span>
+          <span class="mgroup__sub">${escapeHtml(menuText(section, 'subtitle'))}</span>
         </span>
-        <span class="mgroup__count">${section.items.length} ${plural(section.items.length, 'позиция', 'позиции', 'позиций')}</span>
+        <span class="mgroup__count">${itemsCountLabel(section.items.length)}</span>
         <span class="mgroup__chev">${ICON_CHEVRON}</span>
       </button>
       <div class="mgroup__panel" id="panel-${section.id}">
@@ -89,23 +100,24 @@ function setupDish(card) {
   function renderControl() {
     const qty = Cart.getQty(item.id);
     if (!qty) {
-      control.innerHTML = `<button class="dish__add" type="button" data-add>${ICON_PLUS} В корзину</button>`;
+      control.innerHTML = `<button class="dish__add" type="button" data-add>${ICON_PLUS} ${I18N.t('dish.addBtn')}</button>`;
       control.querySelector('[data-add]').addEventListener('click', () => {
         Cart.add({ id: item.id, name: item.name, price: item.price, img: item.img });
       });
     } else {
       control.innerHTML = `
         <div class="stepper">
-          <button type="button" data-minus aria-label="Убрать одну">−</button>
+          <button type="button" data-minus aria-label="${escapeHtml(I18N.t('dish.decreaseAria'))}">−</button>
           <output>${qty}</output>
-          <button type="button" data-plus aria-label="Добавить ещё одну">+</button>
+          <button type="button" data-plus aria-label="${escapeHtml(I18N.t('dish.increaseAria'))}">+</button>
         </div>`;
       control.querySelector('[data-minus]').addEventListener('click', () => Cart.setQty(item.id, Cart.getQty(item.id) - 1));
       control.querySelector('[data-plus]').addEventListener('click', () => Cart.setQty(item.id, Cart.getQty(item.id) + 1));
     }
   }
 
-  Cart.subscribe(renderControl);
+  const unsub = Cart.subscribe(renderControl);
+  dishUnsubs.push(unsub);
 }
 
 /* ---------- Cart drawer ---------- */
@@ -116,12 +128,12 @@ function renderDrawer() {
   const checkout = document.querySelector('[data-cart-checkout]');
   if (!box) return;
 
-  const items = Cart.getItems();
+  const items = Cart.getItems().map((it) => Cart.resolveLine(it));
   if (!items.length) {
     box.innerHTML = `
       <div class="cart-empty">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.4a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.7L5.5 4H3"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        Пока пусто. Выберите бургер, закуску или напиток в меню.
+        ${escapeHtml(I18N.t('drawer.emptyText'))}
       </div>`;
   } else {
     box.innerHTML = items
@@ -135,11 +147,11 @@ function renderDrawer() {
           </div>
           <div class="cart-line__side">
             <div class="stepper">
-              <button type="button" data-dec aria-label="Уменьшить количество">−</button>
+              <button type="button" data-dec aria-label="${escapeHtml(I18N.t('drawer.decreaseAria'))}">−</button>
               <output>${it.qty}</output>
-              <button type="button" data-inc aria-label="Увеличить количество">+</button>
+              <button type="button" data-inc aria-label="${escapeHtml(I18N.t('drawer.increaseAria'))}">+</button>
             </div>
-            <button class="cart-line__remove" type="button" data-del>Удалить</button>
+            <button class="cart-line__remove" type="button" data-del>${escapeHtml(I18N.t('drawer.remove'))}</button>
           </div>
         </div>`
       )
@@ -179,6 +191,7 @@ function bindDrawer() {
   });
 
   Cart.subscribe(renderDrawer);
+  document.addEventListener('langchange', renderDrawer);
 }
 
 /* ---------- Navigation, reveal ---------- */
@@ -229,3 +242,4 @@ renderMenu();
 bindDrawer();
 bindCartIndicators();
 bindChrome();
+document.addEventListener('langchange', renderMenu);

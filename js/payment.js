@@ -58,7 +58,11 @@ function setError(name, bad) {
 
 /* ---------- Summary ---------- */
 
-const PICKUP_LABEL = { pickup: 'Самовывоз', delivery: 'Доставка' };
+function pickupLabel(key) {
+  if (key === 'pickup') return I18N.t('pickup.pickupLabel');
+  if (key === 'delivery') return I18N.t('pickup.deliveryLabel');
+  return key;
+}
 
 function renderSummary(order) {
   const box = document.querySelector('[data-summary-lines]');
@@ -66,6 +70,7 @@ function renderSummary(order) {
   const meta = document.getElementById('order-meta');
 
   box.innerHTML = order.items
+    .map((it) => Cart.resolveLine(it))
     .map(
       (it) => `
       <div class="summary__line">
@@ -79,7 +84,7 @@ function renderSummary(order) {
     .join('');
 
   totalEl.textContent = formatPrice(order.total);
-  meta.innerHTML = `${escapeText(PICKUP_LABEL[order.pickup] || order.pickup)} · ${escapeText(order.time)}<br>${escapeText(order.name)}, ${escapeText(order.phone)}`;
+  meta.innerHTML = `${escapeText(pickupLabel(order.pickup))} · ${escapeText(order.time)}<br>${escapeText(order.name)}, ${escapeText(order.phone)}`;
 }
 
 /* ---------- Decorative QR code (demo, encodes nothing) ---------- */
@@ -108,7 +113,7 @@ function drawDemoQr(container, seedText) {
     `<rect x="${ox}" y="${oy}" width="7" height="7" fill="none" stroke="#0d0b0a" stroke-width="1"/>` +
     `<rect x="${ox + 2}" y="${oy + 2}" width="3" height="3"/>`;
 
-  container.innerHTML = `<svg viewBox="0 0 ${size} ${size}" fill="#0d0b0a" shape-rendering="crispEdges" role="img" aria-label="Демо QR-код">
+  container.innerHTML = `<svg viewBox="0 0 ${size} ${size}" fill="#0d0b0a" shape-rendering="crispEdges" role="img" aria-label="${escapeText(I18N.t('payment.qrAria'))}">
       ${cells}${finder(0, 0)}${finder(size - 7, 0)}${finder(0, size - 7)}
     </svg>`;
 }
@@ -140,20 +145,26 @@ function drawDemoQr(container, seedText) {
     cash: document.getElementById('block-cash')
   };
   const payBtn = document.getElementById('pay-btn');
+  const qrText = document.getElementById('qr-text');
   let method = 'card';
+  let isProcessing = false;
 
-  const labels = {
-    card: `Оплатить ${formatPrice(order.total)}`,
-    qr: 'Я оплатил(а) по QR-коду',
-    cash: 'Подтвердить заказ'
-  };
+  function payBtnLabel(m) {
+    if (m === 'card') return I18N.t('payment.payBtnCard', { sum: formatPrice(order.total) });
+    if (m === 'qr') return I18N.t('payment.payBtnQr');
+    return I18N.t('payment.payBtnCash');
+  }
+
+  function renderQrText() {
+    if (qrText) qrText.textContent = I18N.t('payment.qrInstructions', { sum: formatPrice(order.total) });
+  }
 
   function selectMethod(next) {
     method = next;
     Object.entries(blocks).forEach(([key, el]) => {
       el.classList.toggle('is-visible', key === next);
     });
-    payBtn.textContent = labels[next];
+    if (!isProcessing) payBtn.textContent = payBtnLabel(next);
   }
 
   document.querySelectorAll('input[name="method"]').forEach((radio) =>
@@ -162,7 +173,7 @@ function drawDemoQr(container, seedText) {
   selectMethod('card');
 
   drawDemoQr(document.getElementById('qr-frame'), `${order.total}-${order.time}`);
-  document.getElementById('qr-sum').textContent = formatPrice(order.total);
+  renderQrText();
 
   /* --- Card fields --- */
   const number = document.getElementById('card-number');
@@ -174,6 +185,17 @@ function drawDemoQr(container, seedText) {
   const previewHolder = document.getElementById('card-preview-holder');
   const previewExp = document.getElementById('card-preview-exp');
 
+  previewHolder.textContent = holder.value || I18N.t('payment.cardPreviewHolderPlaceholder');
+  previewExp.textContent = exp.value || I18N.t('payment.cardPreviewExpPlaceholder');
+
+  document.addEventListener('langchange', () => {
+    renderSummary(order);
+    if (!isProcessing) payBtn.textContent = payBtnLabel(method);
+    renderQrText();
+    if (!holder.value) previewHolder.textContent = I18N.t('payment.cardPreviewHolderPlaceholder');
+    if (!exp.value) previewExp.textContent = I18N.t('payment.cardPreviewExpPlaceholder');
+  });
+
   number.addEventListener('input', () => {
     const digits = number.value.replace(/\D/g, '').slice(0, 19);
     number.value = digits.replace(/(.{4})/g, '$1 ').trim();
@@ -183,14 +205,14 @@ function drawDemoQr(container, seedText) {
 
   holder.addEventListener('input', () => {
     holder.value = holder.value.replace(/[^a-zA-Z\s'-]/g, '').toUpperCase();
-    previewHolder.textContent = holder.value || 'ИМЯ ФАМИЛИЯ';
+    previewHolder.textContent = holder.value || I18N.t('payment.cardPreviewHolderPlaceholder');
     setError('holder', false);
   });
 
   exp.addEventListener('input', () => {
     const digits = exp.value.replace(/\D/g, '').slice(0, 4);
     exp.value = digits.length > 2 ? `${digits.slice(0, 2)}/${digits.slice(2)}` : digits;
-    previewExp.textContent = exp.value || 'ММ/ГГ';
+    previewExp.textContent = exp.value || I18N.t('payment.cardPreviewExpPlaceholder');
     setError('exp', false);
   });
 
@@ -219,16 +241,11 @@ function drawDemoQr(container, seedText) {
       return;
     }
 
+    isProcessing = true;
     payBtn.classList.add('is-loading');
-    payBtn.innerHTML = '<span class="spinner"></span> Обработка…';
+    payBtn.innerHTML = `<span class="spinner"></span> ${escapeText(I18N.t('payment.processing'))}`;
 
     const result = await processPayment(order, method);
-
-    const methodLabels = {
-      card: 'Картой онлайн',
-      qr: 'Оплата по QR-коду',
-      cash: 'Наличными при получении'
-    };
 
     try {
       localStorage.setItem(
@@ -236,7 +253,7 @@ function drawDemoQr(container, seedText) {
         JSON.stringify({
           number: result.id,
           paidAt: new Date().toISOString(),
-          method: methodLabels[method],
+          methodKey: method,
           paid: method !== 'cash',
           order
         })

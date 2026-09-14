@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Оформление заказа — МЯСО & БУЛКА</title>
+<title data-i18n="meta.checkoutTitle">Оформление заказа — МЯСО & БУЛКА</title>
 <meta name="description" content="Оформление заказа в МЯСО & БУЛКА: самовывоз или доставка, выбор времени, оплата картой, по QR-коду или наличными.">
 <meta name="theme-color" content="#0d0b0a">
 <link rel="icon" href="assets/images/favicon.svg" type="image/svg+xml">
@@ -19,15 +19,16 @@
   <div class="header__inner">
     <a href="index.html" class="logo">МЯСО <span>&amp; БУЛКА</span></a>
     <nav class="nav">
-      <a href="index.html#menu">Меню</a>
-      <a href="index.html#about">О нас</a>
-      <a href="index.html#contacts">Контакты</a>
+      <a href="index.html#menu" data-i18n="nav.menu">Меню</a>
+      <a href="index.html#about" data-i18n="nav.about">О нас</a>
+      <a href="index.html#contacts" data-i18n="nav.contacts">Контакты</a>
     </nav>
     <div class="header__actions">
       <a class="header__phone" href="tel:+79991874770">+7 (999) 187-47-70</a>
+      <button class="lang-switch" data-lang-switch type="button">RU</button>
       <a class="cart-btn" href="index.html#menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6h15l-1.6 8.4a2 2 0 0 1-2 1.6H9.2a2 2 0 0 1-2-1.7L5.5 4H3"/><circle cx="10" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/></svg>
-        <span>Назад в меню</span>
+        <span data-i18n="header.backToMenu">Назад в меню</span>
         <span class="cart-btn__count" data-cart-count data-empty="true"></span>
       </a>
     </div>
@@ -38,52 +39,52 @@
   <div class="shell">
 
     <div class="order-empty" id="empty-state" hidden>
-      <div class="order-empty__title">Корзина пуста</div>
-      <p class="order-empty__text">Выберите бургеры, закуски или напитки — а потом возвращайтесь сюда для оформления заказа.</p>
-      <a class="btn btn--primary" href="index.html#menu">Перейти в меню</a>
+      <div class="order-empty__title" data-i18n="checkout.emptyTitle">Корзина пуста</div>
+      <p class="order-empty__text" data-i18n="checkout.emptyText">Выберите бургеры, закуски или напитки — а потом возвращайтесь сюда для оформления заказа.</p>
+      <a class="btn btn--primary" href="index.html#menu" data-i18n="common.goToMenu">Перейти в меню</a>
     </div>
 
     <div id="checkout-root" hidden>
       <div class="order-head">
         <div class="order-steps">
-          <span class="order-step is-active"><b>1</b> Оформление</span>
+          <span class="order-step is-active"><b>1</b> <span data-i18n="steps.step1">Оформление</span></span>
           <span class="order-steps__sep">—</span>
-          <span class="order-step"><b>2</b> Оплата</span>
+          <span class="order-step"><b>2</b> <span data-i18n="steps.step2">Оплата</span></span>
           <span class="order-steps__sep">—</span>
-          <span class="order-step"><b>3</b> Готово</span>
+          <span class="order-step"><b>3</b> <span data-i18n="steps.step3">Готово</span></span>
         </div>
-        <h1 class="order-title">Оформление заказа</h1>
-        <p class="order-sub">Начинаем готовить сразу после подтверждения оплаты. Заберите на месте или закажите доставку.</p>
+        <h1 class="order-title" data-i18n="checkout.title">Оформление заказа</h1>
+        <p class="order-sub" data-i18n="checkout.sub">Начинаем готовить сразу после подтверждения оплаты. Заберите на месте или закажите доставку.</p>
       </div>
 
       <form class="order-grid" id="checkout-form" novalidate>
         <div>
           <section class="panel">
-            <h2 class="panel__title">Контактные данные</h2>
+            <h2 class="panel__title" data-i18n="checkout.contactTitle">Контактные данные</h2>
 
             <div class="field" data-field="name">
-              <label class="field__label" for="name">Ваше имя</label>
-              <input class="input" id="name" name="name" type="text" autocomplete="given-name" placeholder="например, Ирина">
-              <div class="field__error">Введите имя — мы позовём вас на кассе</div>
+              <label class="field__label" for="name" data-i18n="checkout.nameLabel">Ваше имя</label>
+              <input class="input" id="name" name="name" type="text" autocomplete="given-name" placeholder="например, Ирина" data-i18n-attr="placeholder:checkout.namePlaceholder">
+              <div class="field__error" data-i18n="checkout.nameError">Введите имя — мы позовём вас на кассе</div>
             </div>
 
             <div class="field" data-field="phone">
-              <label class="field__label" for="phone">Номер телефона</label>
+              <label class="field__label" for="phone" data-i18n="checkout.phoneLabel">Номер телефона</label>
               <input class="input" id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="+7 (___) ___-__-__">
-              <div class="field__error">Введите полный номер: +7 и 10 цифр</div>
+              <div class="field__error" data-i18n="checkout.phoneError">Введите полный номер: +7 и 10 цифр</div>
             </div>
           </section>
 
           <section class="panel">
-            <h2 class="panel__title">Как получить заказ</h2>
+            <h2 class="panel__title" data-i18n="checkout.deliveryTitle">Как получить заказ</h2>
             <div class="choices choices--2">
               <label class="choice">
                 <input type="radio" name="pickup" value="pickup" checked>
                 <span class="choice__box">
                   <span class="choice__mark"></span>
                   <span>
-                    <span class="choice__title">Самовывоз</span>
-                    <span class="choice__note">Заберите на ул. Розы Люксембург, 67</span>
+                    <span class="choice__title" data-i18n="pickup.pickupLabel">Самовывоз</span>
+                    <span class="choice__note" data-i18n="checkout.pickupNote">Заберите на ул. Розы Люксембург, 67</span>
                   </span>
                 </span>
               </label>
@@ -92,35 +93,35 @@
                 <span class="choice__box">
                   <span class="choice__mark"></span>
                   <span>
-                    <span class="choice__title">Доставка</span>
-                    <span class="choice__note">Привезём по указанному адресу</span>
+                    <span class="choice__title" data-i18n="pickup.deliveryLabel">Доставка</span>
+                    <span class="choice__note" data-i18n="checkout.deliveryNote">Привезём по указанному адресу</span>
                   </span>
                 </span>
               </label>
             </div>
 
             <div class="field" style="margin-top:20px" data-field="time">
-              <label class="field__label" for="time">К какому времени приготовить</label>
+              <label class="field__label" for="time" data-i18n="checkout.timeLabel">К какому времени приготовить</label>
               <select class="select" id="time" name="time"></select>
-              <div class="field__error">Выберите время</div>
+              <div class="field__error" data-i18n="checkout.timeError">Выберите время</div>
             </div>
 
             <div class="field">
-              <label class="field__label" for="comment">Комментарий к заказу</label>
-              <textarea class="textarea" id="comment" name="comment" placeholder="например, без лука, соус отдельно"></textarea>
+              <label class="field__label" for="comment" data-i18n="checkout.commentLabel">Комментарий к заказу</label>
+              <textarea class="textarea" id="comment" name="comment" placeholder="например, без лука, соус отдельно" data-i18n-attr="placeholder:checkout.commentPlaceholder"></textarea>
             </div>
           </section>
         </div>
 
         <aside class="aside">
           <section class="panel">
-            <h2 class="panel__title">Ваш заказ</h2>
+            <h2 class="panel__title" data-i18n="checkout.summaryTitle">Ваш заказ</h2>
             <div class="summary__lines" data-summary-lines></div>
-            <div class="summary__total"><span>Итого</span><b data-summary-total>0 ₽</b></div>
-            <button class="btn btn--primary btn--block" type="submit" style="margin-top:22px">Перейти к оплате</button>
+            <div class="summary__total"><span data-i18n="common.total">Итого</span><b data-summary-total>0 ₽</b></div>
+            <button class="btn btn--primary btn--block" type="submit" style="margin-top:22px" data-i18n="checkout.submitBtn">Перейти к оплате</button>
             <p class="summary__note">
-              Работаем ежедневно с 12:00. Состав и цены соответствуют меню кухни.
-              <a href="index.html#menu" style="color:var(--accent-3)">Изменить заказ</a>
+              <span data-i18n="checkout.noteText">Работаем ежедневно с 12:00. Состав и цены соответствуют меню кухни.</span>
+              <a href="index.html#menu" style="color:var(--accent-3)" data-i18n="checkout.editOrderLink">Изменить заказ</a>
             </p>
           </section>
         </aside>
@@ -129,6 +130,7 @@
   </div>
 </main>
 
+<script src="js/i18n.js"></script>
 <script src="js/menu-data.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/checkout.js"></script>

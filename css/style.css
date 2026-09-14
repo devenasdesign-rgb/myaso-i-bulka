@@ -341,7 +341,7 @@ body.nav-open { overflow: hidden; }
 .burger-stage {
   position: relative;
   z-index: 2;
-  left: -130px;
+  left: -190px;
   width: clamp(432px, 43.2vw, 672px);
   aspect-ratio: 1;
   animation: hero-float 7s ease-in-out infinite;

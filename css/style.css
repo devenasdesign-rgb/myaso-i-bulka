@@ -52,7 +52,7 @@ ul { list-style: none; }
 
 .section {
   position: relative;
-  padding-block: clamp(56px, 9vw, 140px);
+  padding-block: clamp(56px, 9vw, 70px);
 }
 
 .section-kicker {

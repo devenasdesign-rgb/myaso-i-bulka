@@ -180,7 +180,7 @@ ul { list-style: none; }
   letter-spacing: 0.02em;
   white-space: nowrap;
 }
-.logo span { color: var(--accent-2); }
+.logo span:last-child { color: var(--accent-2); }
 
 .nav {
   display: flex;

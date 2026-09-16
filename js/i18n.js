@@ -18,6 +18,9 @@ const STRINGS = {
     'common.goToMenu': 'Перейти в меню',
     'common.langSwitchAria': 'Переключить язык',
 
+    'logo.part1': 'МЯСО',
+    'logo.part2': '& БУЛКА',
+
     'nav.menu': 'Меню',
     'nav.kitchen': 'Кухня',
     'nav.about': 'О нас',
@@ -245,6 +248,9 @@ const STRINGS = {
     'common.total': 'Total',
     'common.goToMenu': 'Go to menu',
     'common.langSwitchAria': 'Switch language',
+
+    'logo.part1': 'MYASO',
+    'logo.part2': '& BULKA',
 
     'nav.menu': 'Menu',
     'nav.kitchen': 'Kitchen',

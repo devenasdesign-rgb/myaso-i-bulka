@@ -85,7 +85,18 @@ const Cart = (() => {
 
 /* ---------- Shared helpers ---------- */
 
-const formatPrice = (value) => `${Math.round(value).toLocaleString('ru-RU')} ₽`;
+/* All prices are stored/calculated in RUB. Display converts to USD in
+   English so the site never shows a currency mismatch, at a fixed
+   demo exchange rate (this is a concept site, not a live FX feed). */
+const USD_RATE = 90;
+
+const formatPrice = (value) => {
+  const lang = (typeof I18N !== 'undefined' && I18N.getLang) ? I18N.getLang() : 'ru';
+  if (lang === 'en') {
+    return `$${(value / USD_RATE).toFixed(2)}`;
+  }
+  return `${Math.round(value).toLocaleString('ru-RU')} ₽`;
+};
 
 function plural(n, one, few, many) {
   const mod10 = n % 10;

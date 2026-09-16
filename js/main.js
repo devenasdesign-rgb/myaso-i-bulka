@@ -237,9 +237,18 @@ function bindChrome() {
   }
 }
 
+/* ---------- Static prices outside the menu/cart render cycle ---------- */
+function renderStaticPrices() {
+  document.querySelectorAll('[data-price]').forEach((el) => {
+    el.textContent = formatPrice(Number(el.getAttribute('data-price')));
+  });
+}
+
 /* ---------- Init ---------- */
 renderMenu();
+renderStaticPrices();
 bindDrawer();
 bindCartIndicators();
 bindChrome();
 document.addEventListener('langchange', renderMenu);
+document.addEventListener('langchange', renderStaticPrices);

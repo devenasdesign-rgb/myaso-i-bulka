@@ -46,7 +46,7 @@
         <h2 class="concept-modal__title" id="concept-title" data-i18n="concept.title"></h2>
         <p class="concept-modal__text" data-i18n="concept.text1"></p>
         <p class="concept-modal__text" data-i18n="concept.text2"></p>
-        <div class="concept-modal__by"><span data-i18n="concept.by"></span> <b>DEVENAS design</b></div>
+        <div class="concept-modal__by"><span data-i18n="concept.by"></span> <a href="https://devenasdesign.com/" target="_blank" rel="noopener noreferrer">DEVENAS design</a></div>
         <button class="btn btn--primary concept-modal__btn" type="button" data-i18n="concept.cta"></button>
       </div>
     `;

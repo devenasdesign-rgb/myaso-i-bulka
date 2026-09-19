@@ -974,7 +974,13 @@ body.concept-open { overflow: hidden; }
   font-size: 13px;
   color: var(--faint);
 }
-.concept-modal__by b { color: var(--accent-2); font-weight: 700; }
+.concept-modal__by a {
+  color: var(--accent-2);
+  font-weight: 700;
+  border-bottom: 1px solid rgba(255, 122, 0, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.concept-modal__by a:hover { color: var(--accent-3); border-color: var(--accent-3); }
 .concept-modal__btn { margin-top: 24px; width: 100%; }
 
 .concept-note {

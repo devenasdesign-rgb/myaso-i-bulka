@@ -899,3 +899,89 @@ body.drawer-open .drawer { transform: translateX(0); }
     scroll-behavior: auto !important;
   }
 }
+
+/* =========================================================
+   Concept disclaimer (modal + permanent note)
+   ========================================================= */
+body.concept-open { overflow: hidden; }
+
+.concept-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(8, 6, 5, 0.82);
+  backdrop-filter: blur(10px);
+  overflow-y: auto;
+  animation: concept-fade 0.3s ease both;
+}
+.concept-modal.is-closing { animation: concept-fade-out 0.25s ease both; }
+@keyframes concept-fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes concept-fade-out { to { opacity: 0; } }
+
+.concept-modal__card {
+  position: relative;
+  width: min(100%, 560px);
+  margin: auto;
+  padding: clamp(24px, 4vw, 40px);
+  border-radius: var(--r-tile);
+  border: 1px solid var(--line);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03)), #14110f;
+  box-shadow: 0 40px 100px -30px rgba(0, 0, 0, 0.9), 0 0 80px -30px rgba(255, 90, 0, 0.45);
+  animation: concept-rise 0.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+@keyframes concept-rise { from { opacity: 0; transform: translateY(18px) scale(0.98); } to { opacity: 1; transform: none; } }
+
+.concept-modal__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.concept-modal__badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 16px;
+  border-radius: var(--r-pill);
+  background: var(--accent-grad);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.concept-modal__title {
+  margin-top: 22px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  text-transform: uppercase;
+  font-size: clamp(22px, 4.4vw, 32px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+.concept-modal__text {
+  margin-top: 16px;
+  color: var(--muted);
+  font-size: 15.5px;
+  line-height: 1.55;
+}
+.concept-modal__text + .concept-modal__text { color: var(--text); }
+.concept-modal__by {
+  margin-top: 20px;
+  font-size: 13px;
+  color: var(--faint);
+}
+.concept-modal__by b { color: var(--accent-2); font-weight: 700; }
+.concept-modal__btn { margin-top: 24px; width: 100%; }
+
+.concept-note {
+  padding: 28px var(--pad) 36px;
+  text-align: center;
+  font-size: 12.5px;
+  letter-spacing: 0.04em;
+  color: var(--faint);
+}
+body:has(.cart-bar) .concept-note { padding-bottom: 100px; }

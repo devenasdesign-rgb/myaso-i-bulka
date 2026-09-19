@@ -236,7 +236,15 @@ const STRINGS = {
     'success.addressValue': 'Екатеринбург, ул. Розы Люксембург, 67',
     'success.detailsTitle': 'Детали заказа',
     'success.orderMoreBtn': 'Заказать ещё',
-    'success.callBtn': 'Позвонить в кафе'
+    'success.callBtn': 'Позвонить в кафе',
+
+    'concept.badge': 'Концепт',
+    'concept.title': 'Это концепт, а не рабочий сайт',
+    'concept.text1': 'Сайт не является рабочим инструментом: заказ и оплата здесь демонстрационные, а все данные вымышленные. Это концепция, разработанная DEVENAS design для портфолио, чтобы визуально показать, как работает сайт.',
+    'concept.text2': 'Если вас заинтересовал именно этот дизайн, мы можем адаптировать его под вашу нишу и задачи.',
+    'concept.by': 'Автор концепции',
+    'concept.cta': 'Понятно, смотреть концепт',
+    'concept.note': 'Концепт от DEVENAS design · не является рабочим сайтом'
   },
 
   en: {
@@ -467,7 +475,15 @@ const STRINGS = {
     'success.addressValue': '67 Rozy Lyuksemburg St., Yekaterinburg',
     'success.detailsTitle': 'Order details',
     'success.orderMoreBtn': 'Order again',
-    'success.callBtn': 'Call the restaurant'
+    'success.callBtn': 'Call the restaurant',
+
+    'concept.badge': 'Concept',
+    'concept.title': 'This is a concept, not a live website',
+    'concept.text1': "This site is not a working tool: orders and payments are simulated and all details are fictional. It's a concept designed by DEVENAS design for a portfolio, made to show visually how the site works.",
+    'concept.text2': 'If you like this particular design, we can adapt it to your niche and needs.',
+    'concept.by': 'Concept by',
+    'concept.cta': 'Got it, explore the concept',
+    'concept.note': 'Concept by DEVENAS design · not a live website'
   }
 };
 
